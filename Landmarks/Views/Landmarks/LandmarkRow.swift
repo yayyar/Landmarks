@@ -13,8 +13,17 @@ struct LandmarkRow: View {
     var body: some View {
         HStack {
             landmark.image.resizable().frame(width: 50,height: 50)
+                .cornerRadius(5)
             
-            Text(landmark.name)
+            VStack(alignment: .leading) {
+                Text(landmark.name)
+                    .bold()
+                #if !os(watchOS)
+                Text(landmark.park)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                #endif
+            }
             
             Spacer()
             
@@ -24,6 +33,7 @@ struct LandmarkRow: View {
             }
             
         }
+        .padding(.vertical,4)
     }
 }
 
